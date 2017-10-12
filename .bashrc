@@ -133,7 +133,18 @@ _isroot=false
     fi
   #}}}
   # DEPLOY_MY_WORK_STATION {{{
-    alias work_station='mkdir media/{music,videos/{cartoons,movies}}/.torrents  workspace/{inwork,complete}/{python,c-cpp,lua,js,java,go} books/.torrents'
+    function __up_station() {
+      [[ -d ~/media ]] || mkdir -p -v ~/media/{music,videos/{cartoons,movies}}/.torrents 
+      [[ -d ~/workspace ]] || mkdir -p -v ~/workspace/{inwork,complete}/{python,c-cpp,lua,js,java,go} 
+      [[ -d ~/books ]] || mkdir -p -v ~/books/.torrents
+      git config user.email >/dev/null || git config --global user.email 'alex-m.a.k.@yandex.kz'
+      git config user.name >/dev/null || git config --global user.name 'Alex M.A.K.'
+      [[ -d ~/.emacs.d ]] || git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+      [[ -d ~/.vim ]] || curl -sLf https://spacevim.org/install.sh | bash
+      [[ -f ~/.rtorrent.rc ]] || cp ~/dotfiles/.rtorrent.rc ~/
+      su -c "sed -i 's/\$USER/mak/g' /etc/conf.d/rtorrentd"
+      su -c "sed -i 's/\/var\/lib\/mpd/\/home\/mak\/media/g' /etc/mpd.conf"
+    }
   # }}}
   # AUTOCOLOR {{{
     alias ls='ls --color=auto'
