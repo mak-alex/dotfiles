@@ -132,6 +132,9 @@ _isroot=false
       alias git=hub
     fi
   #}}}
+  # DEPLOY_MY_WORK_STATION {{{
+    alias work_station='mkdir media/{music,videos/{cartoons,movies}}/.torrents  workspace/{inwork,complete}/{python,c-cpp,lua,js,java,go} books/.torrents'
+  # }}}
   # AUTOCOLOR {{{
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
